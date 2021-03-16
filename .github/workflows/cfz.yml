@@ -1,16 +1,16 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: jkd 聚看点
+name: cfz 春风转
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0,30 23,0-15/1 * * *'
+    - cron: '15,45 2-13 * * *'
   watch:
     types: started
   repository_dispatch:
-    types: jkd
+    types: cfz
 jobs:
   build:
 
@@ -28,12 +28,13 @@ jobs:
         run: |
           cd ~/scripts
           npm install
-      - name: '运行 【聚看点】'
+      - name: '运行 【春风转】'
         run: |
           cd ~/scripts
-          node jkd.js
+          node cfz.js
         env:
-          JUKAN_BODY: ${{ secrets.JKD_COOKIE }}
+          CFZ_url: ${{ secrets.CFZURL }}
+          CFZ_sbhd: ${{ secrets.CFZHD }}
           
           #微信酱
           PUSH_KEY: ${{ secrets.PUSH_KEY }}

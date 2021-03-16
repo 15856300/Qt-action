@@ -1,16 +1,16 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: jkd 聚看点
+name: jrtt 今日头条极速版
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0,30 23,0-15/1 * * *'
+    - cron: '5,35 0-23 * * *'
   watch:
     types: started
   repository_dispatch:
-    types: jkd
+    types: jrtt
 jobs:
   build:
 
@@ -28,12 +28,18 @@ jobs:
         run: |
           cd ~/scripts
           npm install
-      - name: '运行 【聚看点】'
+      - name: '运行 【今日头条极速版】'
         run: |
           cd ~/scripts
-          node jkd.js
+          node jrtt.js
         env:
-          JUKAN_BODY: ${{ secrets.JKD_COOKIE }}
+          JRTTSIGNURL: ${{ secrets.JRTTSIGNURL }}
+          JRTTSIGNKEY: ${{ secrets.JRTTSIGNKEY }}
+          JRTTFARMURL: ${{ secrets.JRTTFARMURL }}
+          JRTTFARMKEY: ${{ secrets.JRTTFARMKEY }}
+
+          JRTTREADURL: ${{ secrets.JRTTREADURL }}
+          JRTTREADKEY: ${{ secrets.JRTTREADKEY }}
           
           #微信酱
           PUSH_KEY: ${{ secrets.PUSH_KEY }}

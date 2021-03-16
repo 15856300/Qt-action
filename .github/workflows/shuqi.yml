@@ -1,16 +1,16 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: 笑谱
+name: shuqi 书旗小说&极速版
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '30 8-21 * * *'
+    - cron: '17 0-23 * * *'
   watch:
     types: started
   repository_dispatch:
-    types: 笑谱
+    types: shuqi
 jobs:
   build:
 
@@ -18,7 +18,7 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
     steps:
       - name: Checkout
-        run: |
+        run: 
           git clone https://github.com/2440194388/Wool-script.git ~/scripts
       - name: Use Node.js 10.x
         uses: actions/setup-node@v1
@@ -28,15 +28,38 @@ jobs:
         run: |
           cd ~/scripts
           npm install
-      - name: '运行 【笑谱】'
+      - name: '运行 【书旗小说&极速版】'
         run: |
           cd ~/scripts
-          node iboxpay.js
+          node shuqi.js
         env:
-          XP_iboxpayHEADER: ${{ secrets.XP_iboxpayHEADER }}
-          XP_CASH: ${{ secrets.XP_CASH }}
-          XP_refreshTOKEN:  ${{ secrets. XP_refreshTOKEN }}
-          XP_live: ${{ secrets.XP_live }}
+          #标准版
+          SQ_shuqiuserURL: ${{ secrets.SQ_SHUQIUSERURL }}
+          SQ_shuqisyURL: ${{ secrets.SQ_SHUQISYURL }}
+          SQ_shuqisyBODY: ${{ secrets.SQ_SHUQISYBODY }}
+          SQ_shuqispBODY: ${{ secrets.SQ_SHUQISPBODY }}
+          SQ_shuqiscBODY: ${{ secrets.SQ_SHUQISCBODY }}
+          SQ_shuqiydBODY: ${{ secrets.SQ_SHUQIYDBODY }}
+          SQ_shuqiqdBODY: ${{ secrets.SQ_SHUQIQDBODY }}
+          SQ_shuqirwBODY: ${{ secrets.SQ_shuqiRWBODY }}
+          SQ_shuqifxBODY: ${{ secrets.SQ_SHUQIFXBODY }}
+          SQ_shuqisprwURL: ${{ secrets.SQ_SHUQISPRWURL }}
+          SQ_shuqijlBODY: ${{ secrets.SQ_SHUQIJLBODY }}
+          SQ_shuqisqjlBODY: ${{ secrets.SQ_SHUQISQJLBODY }}
+          SQ_shuqicjyURL: ${{ secrets.SQ_SHUQICJYURL }}
+          SQ_shuqicjcsBODY: ${{ secrets.SQ_SHUQICJCSBODY }}
+          SQ_shuqicjBODY: ${{ secrets.SQ_SHUQICJBODY }}
+          SQ_shuqijsspBODY: ${{ secrets.SQ_SHUQIJSSPBODY }}
+          SQ_shuqijsydURL: ${{ secrets.SQ_SHUQIJSYDURL }}
+          SQ_shuqijsydBODY: ${{ secrets.SQ_SHUQIJSYDBODY }}
+          SQ_shuqijsqdBODY: ${{ secrets.SQ_SHUQIJSQDBODY }}
+          SQ_shuqijsqdspyURL: ${{ secrets.SQ_SHUQIJSQDSPYURL }}
+          SQ_shuqijsqdspBODY: ${{ secrets.SQ_SHUQIJSQDSPBODY }}
+          SQ_shuqijsrwBODY: ${{ secrets.SQ_SHUQIJSRWBODY }}
+          SQ_shuqijsfxBODY: ${{ secrets.SQ_SHUQIJSFXBODY }}
+          SQ_shuqijsbookURL: ${{ secrets.SQ_SHUQIJSBOOKURL }}
+          SQ_shuqijsbookBODY: ${{ secrets.SQ_SHUQIJSBOOKBODY }}
+          SQ_shuqijssprwURL: ${{ secrets.SQ_SHUQIJSSPRWURL }}
           
           #微信酱
           PUSH_KEY: ${{ secrets.PUSH_KEY }}

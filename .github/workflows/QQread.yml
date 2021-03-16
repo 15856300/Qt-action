@@ -1,16 +1,16 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: jkd 聚看点
+name: QQread QQ阅读APP
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0,30 23,0-15/1 * * *'
+    - cron: '30 0-23 * * *'
   watch:
     types: started
   repository_dispatch:
-    types: jkd
+    types: QQread
 jobs:
   build:
 
@@ -28,12 +28,12 @@ jobs:
         run: |
           cd ~/scripts
           npm install
-      - name: '运行 【聚看点】'
+      - name: '运行 【QQ阅读APP】'
         run: |
           cd ~/scripts
-          node jkd.js
+          node QQread.js
         env:
-          JUKAN_BODY: ${{ secrets.JKD_COOKIE }}
+          QQ_QQreadURL: ${{ secrets.QQ_QQreadURL }}
           
           #微信酱
           PUSH_KEY: ${{ secrets.PUSH_KEY }}

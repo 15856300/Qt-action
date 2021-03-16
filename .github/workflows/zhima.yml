@@ -1,16 +1,16 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: jkd 聚看点
+name: zhima 芝嫲视频
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0,30 23,0-15/1 * * *'
+    - cron: '0 * * * *'
   watch:
     types: started
   repository_dispatch:
-    types: jkd
+    types: zhima
 jobs:
   build:
 
@@ -28,13 +28,15 @@ jobs:
         run: |
           cd ~/scripts
           npm install
-      - name: '运行 【聚看点】'
+      - name: '运行 【芝嫲视频】'
         run: |
           cd ~/scripts
-          node jkd.js
+          node zhima.js
         env:
-          JUKAN_BODY: ${{ secrets.JKD_COOKIE }}
+          ZM_zhimabody: ${{ secrets.ZM_zhimabody }}
+          ZM_zhimatxbody: ${{ secrets.ZM_zhimatxbody }}
           
+          ZM_CASH: ${{ secrets.ZM_CASH }}
           #微信酱
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           #BARK推送

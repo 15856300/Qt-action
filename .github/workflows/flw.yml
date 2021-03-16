@@ -1,16 +1,16 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: jkd 聚看点
+name: flw 返利网
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0,30 23,0-15/1 * * *'
+    - cron: '12,23 0-23 * * *'
   watch:
     types: started
   repository_dispatch:
-    types: jkd
+    types: flw
 jobs:
   build:
 
@@ -28,13 +28,19 @@ jobs:
         run: |
           cd ~/scripts
           npm install
-      - name: '运行 【聚看点】'
+      - name: '运行 【返利网】'
         run: |
           cd ~/scripts
-          node jkd.js
+          node flw.js
         env:
-          JUKAN_BODY: ${{ secrets.JKD_COOKIE }}
+          FL_flwURL: ${{ secrets.FL_flwURL }}
+          FL_flwHEADER: ${{ secrets.FL_flwHEADER }}
+          FL_flwspBODY: ${{ secrets.FL_flwspBODY }}
+          FL_flwqwBODY: ${{ secrets.FL_flwqwBODY }}
           
+          FL_CASH: ${{ secrets.FL_CASH }}
+          FL_DHCASH: ${{ secrets.FL_DHCASH }}
+          FL_flwydBODY: ${{ secrets.FL_flwydBODY }}
           #微信酱
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           #BARK推送
